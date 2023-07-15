@@ -18,22 +18,24 @@ export function Groups() {
     navigation.navigate("new");
   }
 
-  async  function fetchGroups() {
+  async function fetchGroups() {
     try {
-      const data = await groupGetAll()
-      setGroups(data)
+      const data = await groupGetAll();
+      setGroups(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   function handleOpenGroup(group: string) {
-    navigation.navigate('players', {group})
+    navigation.navigate("players", { group });
   }
 
-  useFocusEffect(useCallback(() => {
-    fetchGroups()
-  }, []))
+  useFocusEffect(
+    useCallback(() => {
+      fetchGroups();
+    }, [])
+  );
 
   return (
     <Container>
@@ -46,7 +48,9 @@ export function Groups() {
         ListEmptyComponent={
           <ListEmpty message="Que tal cadastrar a primeira turma?" />
         }
-        renderItem={({ item }) => <GroupCard onPress={() => handleOpenGroup(item)} title={item} />}
+        renderItem={({ item }) => (
+          <GroupCard onPress={() => handleOpenGroup(item)} title={item} />
+        )}
       />
       <Button title="Criar turma" onPress={handleGoToNewGroup} />
     </Container>
